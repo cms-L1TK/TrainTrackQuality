@@ -107,14 +107,17 @@ chi2rphi_bins = np.array([0.0, 1.0, 1.5, 2.0, 2.5, 3.0, 3.5, 4.0, 5.0, 6.0, 10.0
 bendchi2_bins = np.array([0.0, 0.75, 1.0, 1.5, 2.25, 3.5, 5.0, 20.0, np.inf])
 
 X_train_bin = X_train.copy()
-X_train_bin[:,6] = np.digitize(X_train_bin[:,6]/(X_train_bin[:,4]-2),chi2rphi_bins)-1 #chi2rphi
-X_train_bin[:,7] = np.digitize(X_train_bin[:,7]/(X_train_bin[:,4]-2),chi2rz_bins)-1 #chi2rz
-X_train_bin[:,3] = np.digitize(X_train_bin[:,3],bendchi2_bins)-1 #bendchi2
+X_train_bin[:,5] = np.digitize(X_train_bin[:,5]/(X_train_bin[:,3]-2),chi2rphi_bins)-1 #chi2rphi/dof
+X_train_bin[:,6] = np.digitize(X_train_bin[:,6]/(X_train_bin[:,3]-2),chi2rz_bins)-1 #chi2rz/dof
+X_train_bin[:,2] = np.digitize(X_train_bin[:,2],bendchi2_bins)-1 #bendchi2
 
 X_test_bin = X_test.copy()
-X_test_bin[:,6] = np.digitize(X_test_bin[:,6]/(X_test_bin[:,4]-2),chi2rphi_bins)-1 #chi2rphi
-X_test_bin[:,7] = np.digitize(X_test_bin[:,7]/(X_test_bin[:,4]-2),chi2rz_bins)-1 #chi2rz
-X_test_bin[:,3] = np.digitize(X_test_bin[:,3],bendchi2_bins)-1 #bendchi2
+X_test_bin[:,5] = np.digitize(X_test_bin[:,5]/(X_test_bin[:,3]-2),chi2rphi_bins)-1 #chi2rphi/dof
+X_test_bin[:,6] = np.digitize(X_test_bin[:,6]/(X_test_bin[:,3]-2),chi2rz_bins)-1 #chi2rz/dof
+X_test_bin[:,2] = np.digitize(X_test_bin[:,2],bendchi2_bins)-1 #bendchi2
+
+# scale z0
+X_test_bin[:,1] = X_test_bin[:,1]/20.46912512
 
 # -----TRAIN MODEL-----
 

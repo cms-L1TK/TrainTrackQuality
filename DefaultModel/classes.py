@@ -6,7 +6,7 @@ class dataType:
     '''
     def __init__(self, data_arrays):
  
-        self.init_features = ['trk_phi','trk_eta','trk_z0',
+        self.init_features = ['trk_tanl','trk_z0',
                               'trk_bendchi2','trk_nstub','trk_hitpattern',
                               'trk_chi2rphi','trk_chi2rz']
         self.trks = trks(data_arrays, self.init_features, False)
@@ -132,4 +132,4 @@ class trks:
             self.pt = np.delete(self.pt,bad_i,0)
             self.eta = np.delete(self.eta,bad_i,0)
         
-        return    
+        return
